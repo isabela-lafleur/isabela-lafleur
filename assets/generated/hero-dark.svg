@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 475" role="img" aria-labelledby="title desc">
   <title id="title">Isabela LaFleur hero</title>
-  <desc id="desc">Isabela LaFleur — Chemical &amp; Biomolecular Engineering / Scientific Computing • Biosecurity. I build stuff. Usually computational systems. Sometimes useful.
+  <desc id="desc">Isabela LaFleur — Chemical &amp; Biomolecular Engineering / Scientific Computing • Biosecurity. STEM researcher and developer experienced in ML, automation, and scientific  data pipelines, with projects spanning materials science, clinical imaging  workflows, and women&#x27;s health analytics.
  Molecule of the Month: Hantavirus (July 2026).</desc>
   <!-- Generated file. Edit data/profile.yml or design/tokens.yml and rebuild. -->
   <defs>
@@ -78,7 +78,9 @@
   </text>
 
   <text x="58.0" y="254.75" class="hero-statement">
-    <tspan x="58.0" dy="0">I build stuff. Usually computational systems. Sometimes useful.</tspan>
+    <tspan x="58.0" dy="0">STEM researcher and developer experienced in ML, automation,</tspan>
+    <tspan x="58.0" dy="23.0">and scientific data pipelines, with projects spanning materials</tspan>
+    <tspan x="58.0" dy="23.0">science, clinical imaging workflows, and women&#x27;s health analytics.</tspan>
   </text>
 
   <text x="58.0" y="407.1" text-anchor="start" class="hero-meta">B.S. expected 2027</text>

@@ -182,7 +182,8 @@ def render_hero(
         text_width,
         allow_box_expansion=False,
     )
-    if len(statement_layout.lines) > (3 if viewport == "mobile" else 2):
+    max_statement_lines = 4 if viewport == "mobile" else 3
+    if len(statement_layout.lines) > max_statement_lines:
         raise ValueError("hero:statement exceeded supported line count")
 
     padding = _panel_padding(layout)
