@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="{{ viewbox }}" role="img" aria-labelledby="title desc">
+  <title id="title">{{ title }}</title>
+  <desc id="desc">{{ desc }}</desc>
+  <!-- Generated file. Edit data/profile.yml or design/tokens.yml and rebuild. -->
+  <defs>
+    <style>
+      {{ style_block }}
+    </style>
+    <linearGradient id="feature-panel-fill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="{{ colors.background }}" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="{{ colors.trace_fill }}" stop-opacity="0.92"/>
+    </linearGradient>
+    <clipPath id="feature-image-clip">
+      <rect x="{{ molecule.image_frame.x }}" y="{{ molecule.image_frame.y }}" width="{{ molecule.image_frame.width }}" height="{{ molecule.image_frame.height }}" rx="{{ molecule.image_frame.radius }}"/>
+    </clipPath>
+  </defs>
+  <rect width="{{ width }}" height="{{ height }}" rx="24" fill="{{ colors.background }}"/>
+  <rect x="{{ panel.x }}" y="{{ panel.y }}" width="{{ panel.width }}" height="{{ panel.height }}" rx="{{ panel.radius }}" fill="{{ colors.panel }}" stroke="{{ colors.border }}"/>
+
+  <rect x="{{ molecule.box.x }}" y="{{ molecule.box.y }}" width="{{ molecule.box.width }}" height="{{ molecule.box.height }}" rx="{{ molecule.box.radius }}" fill="url(#feature-panel-fill)" stroke="{{ colors.border }}"/>
+  <rect x="{{ molecule.image_frame.x }}" y="{{ molecule.image_frame.y }}" width="{{ molecule.image_frame.width }}" height="{{ molecule.image_frame.height }}" rx="{{ molecule.image_frame.radius }}" fill="{{ colors.background }}" stroke="{{ colors.border }}"/>
+  <a href="{{ molecule.link_href }}">
+    <image
+      x="{{ molecule.image_render.x }}"
+      y="{{ molecule.image_render.y }}"
+      width="{{ molecule.image_render.width }}"
+      height="{{ molecule.image_render.height }}"
+      href="{{ molecule.image_href }}"
+      preserveAspectRatio="xMidYMid meet"
+      clip-path="url(#feature-image-clip)"
+    />
+  </a>
+
+  {% if top_label %}
+  <text x="{{ top_label_position.x }}" y="{{ top_label_position.y }}" class="hero-top-label">{{ top_label }}</text>
+  {% endif %}
+
+  <text x="{{ name_block.x }}" y="{{ name_block.y }}" class="hero-name">
+    {% for line in name_block.lines %}
+    <tspan x="{{ name_block.x }}" dy="{{ 0 if loop.first else name_block.leading }}">{{ line }}</tspan>
+    {% endfor %}
+  </text>
+
+  <text x="{{ discipline_block.x }}" y="{{ discipline_block.y }}" class="hero-discipline">
+    {% for line in discipline_block.lines %}
+    <tspan x="{{ discipline_block.x }}" dy="{{ 0 if loop.first else discipline_block.leading }}">{{ line }}</tspan>
+    {% endfor %}
+  </text>
+
+  <text x="{{ statement_block.x }}" y="{{ statement_block.y }}" class="hero-statement">
+    {% for line in statement_block.lines %}
+    <tspan x="{{ statement_block.x }}" dy="{{ 0 if loop.first else statement_block.leading }}">{{ line }}</tspan>
+    {% endfor %}
+  </text>
+
+  {% for item in metadata_items %}
+  <text x="{{ item.x }}" y="{{ item.y }}" text-anchor="{{ item.anchor }}" class="{{ item.class_name }}">{{ item.text }}</text>
+  {% endfor %}
+
+  <text x="{{ molecule.label_pos.x }}" y="{{ molecule.label_pos.y }}" class="hero-feature-label">{{ molecule.label }}</text>
+
+  <text x="{{ molecule.title_block.x }}" y="{{ molecule.title_block.y }}" class="hero-feature-title">
+    {% for line in molecule.title_block.lines %}
+    <tspan x="{{ molecule.title_block.x }}" dy="{{ 0 if loop.first else molecule.title_block.leading }}">{{ line }}</tspan>
+    {% endfor %}
+  </text>
+
+  <text x="{{ molecule.date_block.x }}" y="{{ molecule.date_block.y }}" class="hero-feature-meta">
+    {% for line in molecule.date_block.lines %}
+    <tspan x="{{ molecule.date_block.x }}" dy="{{ 0 if loop.first else molecule.date_block.leading }}">{{ line }}</tspan>
+    {% endfor %}
+  </text>
+
+  <a href="{{ molecule.link_href }}">
+    <text x="{{ molecule.link_block.x }}" y="{{ molecule.link_block.y }}" class="hero-feature-link">
+      {% for line in molecule.link_block.lines %}
+      <tspan x="{{ molecule.link_block.x }}" dy="{{ 0 if loop.first else molecule.link_block.leading }}">{{ line }}</tspan>
+      {% endfor %}
+    </text>
+  </a>
+
+  <text x="{{ molecule.note_1_block.x }}" y="{{ molecule.note_1_block.y }}" class="hero-feature-note">
+    {% for line in molecule.note_1_block.lines %}
+    <tspan x="{{ molecule.note_1_block.x }}" dy="{{ 0 if loop.first else molecule.note_1_block.leading }}">{{ line }}</tspan>
+    {% endfor %}
+  </text>
+
+  <text x="{{ molecule.note_2_block.x }}" y="{{ molecule.note_2_block.y }}" class="hero-feature-note">
+    {% for line in molecule.note_2_block.lines %}
+    <tspan x="{{ molecule.note_2_block.x }}" dy="{{ 0 if loop.first else molecule.note_2_block.leading }}">{{ line }}</tspan>
+    {% endfor %}
+  </text>
+</svg>

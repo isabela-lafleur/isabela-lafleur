@@ -1,0 +1,23 @@
+{
+  "article_id": 319,
+  "article_url": "https://pdb101.rcsb.org/motm/319",
+  "author": "Janet Iwasa",
+  "cached_on": "2026-07-30",
+  "image_cropped": false,
+  "image_height": 750,
+  "image_name": "9p3x.tif",
+  "image_resized": true,
+  "image_transform_note": "Image resized from the original TIFF.",
+  "image_url": "https://cdn.rcsb.org/pdb101/motm/319/9p3x.tif",
+  "image_width": 760,
+  "label": "Molecule of the Month",
+  "license": "CC BY 4.0",
+  "license_owner": "RCSB PDB",
+  "link_host_label": "pdb101.rcsb.org/motm/319",
+  "link_label": "Original article",
+  "month_year": "July 2026",
+  "original_height": 3376,
+  "original_width": 3420,
+  "source": "live",
+  "title": "Hantavirus"
+}

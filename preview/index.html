@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Scientific Profile Preview</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f6f7fb;
+        --panel: #eef0f7;
+        --panel-strong: rgba(255, 255, 255, 0.72);
+        --text: #1b1f26;
+        --muted: #5f6673;
+        --border: #dde1eb;
+        --accent: #4f6bff;
+      }
+
+      html[data-theme="dark"] {
+        --bg: #0d1016;
+        --panel: #151a22;
+        --panel-strong: rgba(20, 26, 34, 0.92);
+        --text: #e9ecf4;
+        --muted: #a1a8b7;
+        --border: #262d3a;
+        --accent: #91a4ff;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        html:not([data-theme="light"]) {
+          --bg: #0d1016;
+          --panel: #151a22;
+          --panel-strong: rgba(20, 26, 34, 0.92);
+          --text: #e9ecf4;
+          --muted: #a1a8b7;
+          --border: #262d3a;
+          --accent: #91a4ff;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(145, 164, 255, 0.18), transparent 34%),
+          linear-gradient(180deg, var(--bg), color-mix(in srgb, var(--bg) 82%, #90a5ff 18%));
+        color: var(--text);
+      }
+
+      a {
+        color: var(--accent);
+      }
+
+      .page {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 24px 0 48px;
+        overflow-x: clip;
+      }
+
+      .stack {
+        display: grid;
+        gap: 18px;
+      }
+
+      .toolbar,
+      .cards,
+      .variant-grid,
+      .readme-preview-grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .toolbar {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .cards {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+
+      .card {
+        background: color-mix(in srgb, var(--panel) 90%, white 10%);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 18px;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+      }
+
+      .card--wide {
+        grid-column: 1 / -1;
+      }
+
+      .variant-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        margin-top: 14px;
+      }
+
+      .variant-card {
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 12px;
+        background: var(--panel-strong);
+      }
+
+      .variant-card figcaption {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: baseline;
+        margin-bottom: 10px;
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      button {
+        appearance: none;
+        border: 1px solid var(--border);
+        background: transparent;
+        color: var(--text);
+        border-radius: 999px;
+        padding: 10px 14px;
+        font: inherit;
+        cursor: pointer;
+      }
+
+      button:hover,
+      button[data-active="true"] {
+        border-color: color-mix(in srgb, var(--accent) 58%, var(--border));
+        background: color-mix(in srgb, var(--accent) 15%, transparent);
+      }
+
+      h1, h2, h3, p {
+        margin: 0;
+      }
+
+      .section-copy {
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .frame,
+      .preview-shell {
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: var(--bg);
+        padding: 10px;
+        margin-top: 12px;
+      }
+
+      .frame img,
+      .frame picture,
+      .variant-card img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+      }
+
+      .narrow-shell {
+        width: min(100%, 390px);
+      }
+
+      .readme-preview-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        align-items: start;
+        margin-top: 14px;
+      }
+
+      .preview-shell {
+        padding: 14px;
+        background: color-mix(in srgb, var(--panel) 86%, white 14%);
+      }
+
+      .desktop-preview-width {
+        width: min(100%, 900px);
+      }
+
+      .desktop-preview-width iframe,
+      .phone-shell iframe {
+        width: 100%;
+        border: 0;
+        background: transparent;
+        display: block;
+      }
+
+      .desktop-preview-width iframe {
+        min-height: 1200px;
+        border-radius: 12px;
+      }
+
+      .phone-shell {
+        width: min(100%, 390px);
+        margin: 0 auto;
+        padding: 14px;
+        border-radius: 28px;
+        background: color-mix(in srgb, var(--panel-strong) 94%, black 6%);
+        border: 1px solid var(--border);
+        box-shadow: 0 18px 38px rgba(0, 0, 0, 0.14);
+        overflow: hidden;
+      }
+
+      .phone-shell iframe {
+        min-height: 844px;
+        border-radius: 18px;
+      }
+
+      .preview-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .label {
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      @media (max-width: 760px) {
+        .page {
+          width: min(100%, calc(100% - 20px));
+          padding: 18px 0 36px;
+        }
+
+        .card {
+          padding: 16px;
+        }
+
+        .desktop-preview-width iframe {
+          min-height: 960px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page stack">
+      <section class="toolbar">
+        <article class="card">
+          <h1>Profile Preview</h1>
+          <p class="section-copy">This approximates GitHub image rendering for the generated README assets, but it is not a full GitHub Markdown renderer.</p>
+        </article>
+        <article class="card">
+          <h2>Theme</h2>
+          <div class="buttons" style="margin-top: 10px;">
+            <button type="button" data-theme-choice="light">Light</button>
+            <button type="button" data-theme-choice="dark">Dark</button>
+            <button type="button" data-theme-choice="system" data-active="true">System</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="cards">
+        <article class="card">
+          <h2>README picture element</h2>
+          <p class="section-copy">Uses the same theme-aware picture structure as the generated profile.</p>
+          <div class="frame">
+            <picture>
+              <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="../assets/generated/hero-mobile-dark.svg">
+              <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="../assets/generated/hero-mobile-light.svg">
+              <source media="(prefers-color-scheme: dark)" srcset="../assets/generated/hero-dark.svg">
+              <source media="(prefers-color-scheme: light)" srcset="../assets/generated/hero-light.svg">
+              <img src="../assets/generated/hero-light.svg" alt="Theme-aware profile hero preview">
+            </picture>
+          </div>
+        </article>
+
+        <article class="card card--wide">
+          <h2>Hero variants</h2>
+          <p class="section-copy">Direct asset inspection for both themes. Full-size links let you judge actual type proportions without the grid misleading the scale.</p>
+          <div class="variant-grid">
+            <figure class="variant-card">
+              <figcaption><span>Desktop light</span><a href="../assets/generated/hero-light.svg" target="_blank" rel="noreferrer">Open full size</a></figcaption>
+              <img src="../assets/generated/hero-light.svg" alt="Desktop light hero asset">
+            </figure>
+            <figure class="variant-card">
+              <figcaption><span>Desktop dark</span><a href="../assets/generated/hero-dark.svg" target="_blank" rel="noreferrer">Open full size</a></figcaption>
+              <img src="../assets/generated/hero-dark.svg" alt="Desktop dark hero asset">
+            </figure>
+            <figure class="variant-card">
+              <figcaption><span>Mobile light</span><a href="../assets/generated/hero-mobile-light.svg" target="_blank" rel="noreferrer">Open full size</a></figcaption>
+              <img src="../assets/generated/hero-mobile-light.svg" alt="Mobile light hero asset">
+            </figure>
+            <figure class="variant-card">
+              <figcaption><span>Mobile dark</span><a href="../assets/generated/hero-mobile-dark.svg" target="_blank" rel="noreferrer">Open full size</a></figcaption>
+              <img src="../assets/generated/hero-mobile-dark.svg" alt="Mobile dark hero asset">
+            </figure>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>Narrow-width asset preview</h2>
+          <p class="section-copy">Mobile-width approximation for overflow checks using the same responsive picture behavior as the README.</p>
+          <div class="frame narrow-shell">
+            <picture>
+              <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="../assets/generated/hero-mobile-dark.svg">
+              <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="../assets/generated/hero-mobile-light.svg">
+              <source media="(prefers-color-scheme: dark)" srcset="../assets/generated/hero-dark.svg">
+              <source media="(prefers-color-scheme: light)" srcset="../assets/generated/hero-light.svg">
+              <img src="../assets/generated/hero-light.svg" alt="Theme-aware profile hero preview at narrow width">
+            </picture>
+          </div>
+        </article>
+
+        <article class="card card--wide">
+          <h2>Widget gallery</h2>
+          <p class="section-copy">Direct inspection for the new generated widget assets. Each panel includes desktop light, desktop dark, and a mobile card preview with full-size links for actual-width review.</p>
+          <div class="cards" style="margin-top: 14px;">
+            <article class="variant-card">
+              <h3>Identity</h3>
+              <div class="variant-grid">
+                <figure class="variant-card">
+                  <figcaption><span>Light</span><a href="../assets/generated/identity-light.svg" target="_blank" rel="noreferrer">Open full size</a></figcaption>
+                  <img src="../assets/generated/identity-light.svg" alt="Identity widget light">
+                </figure>
+                <figure class="variant-card">
+                  <figcaption><span>Dark</span><a href="../assets/generated/identity-dark.svg" target="_blank" rel="noreferrer">Open full size</a></figcaption>
+                  <img src="../assets/generated/identity-dark.svg" alt="Identity widget dark">
+                </figure>
+                <figure class="variant-card">
+                  <figcaption><span>Mobile</span><a href="../assets/generated/identity-mobile-light.svg" target="_blank" rel="noreferrer">Open full size</a></figcaption>
+                  <img src="../assets/generated/identity-mobile-light.svg" alt="Identity widget mobile">
+                </figure>
+              </div>
+            </article>
+            <article class="variant-card">
+              <h3>Featured work</h3>
+              <div class="variant-grid">
+                <figure class="variant-card">
+                  <figcaption><span>Light</span><a href="../assets/generated/featured-work-light.svg" target="_blank" rel="noreferrer">Open full size</a></figcaption>
+                  <img src="../assets/generated/featured-work-light.svg" alt="Featured work widget light">
+                </figure>
+                <figure class="variant-card">
+                  <figcaption><span>Dark</span><a href="../assets/generated/featured-work-dark.svg" target="_blank" rel="noreferrer">Open full size</a></figcaption>
+                  <img src="../assets/generated/featured-work-dark.svg" alt="Featured work widget dark">
+                </figure>
+                <figure class="variant-card">
+                  <figcaption><span>Mobile</span><a href="../assets/generated/featured-work-mobile-light.svg" target="_blank" rel="noreferrer">Open full size</a></figcaption>
+                  <img src="../assets/generated/featured-work-mobile-light.svg" alt="Featured work widget mobile">
+                </figure>
+              </div>
+            </article>
+            <article class="variant-card">
+              <h3>Signal path</h3>
+              <div class="variant-grid">
+                <figure class="variant-card">
+                  <figcaption><span>Light</span><a href="../assets/generated/signal-path-light.svg" target="_blank" rel="noreferrer">Open full size</a></figcaption>
+                  <img src="../assets/generated/signal-path-light.svg" alt="Signal path widget light">
+                </figure>
+                <figure class="variant-card">
+                  <figcaption><span>Dark</span><a href="../assets/generated/signal-path-dark.svg" target="_blank" rel="noreferrer">Open full size</a></figcaption>
+                  <img src="../assets/generated/signal-path-dark.svg" alt="Signal path widget dark">
+                </figure>
+                <figure class="variant-card">
+                  <figcaption><span>Mobile</span><a href="../assets/generated/signal-path-mobile-light.svg" target="_blank" rel="noreferrer">Open full size</a></figcaption>
+                  <img src="../assets/generated/signal-path-mobile-light.svg" alt="Signal path widget mobile">
+                </figure>
+              </div>
+            </article>
+            <article class="variant-card">
+              <h3>Skills</h3>
+              <div class="variant-grid">
+                <figure class="variant-card">
+                  <figcaption><span>Light</span><a href="../assets/generated/skills-light.svg" target="_blank" rel="noreferrer">Open full size</a></figcaption>
+                  <img src="../assets/generated/skills-light.svg" alt="Skills widget light">
+                </figure>
+                <figure class="variant-card">
+                  <figcaption><span>Dark</span><a href="../assets/generated/skills-dark.svg" target="_blank" rel="noreferrer">Open full size</a></figcaption>
+                  <img src="../assets/generated/skills-dark.svg" alt="Skills widget dark">
+                </figure>
+                <figure class="variant-card">
+                  <figcaption><span>Mobile</span><a href="../assets/generated/skills-mobile-light.svg" target="_blank" rel="noreferrer">Open full size</a></figcaption>
+                  <img src="../assets/generated/skills-mobile-light.svg" alt="Skills widget mobile">
+                </figure>
+              </div>
+            </article>
+            <article class="variant-card">
+              <h3>Timeline</h3>
+              <div class="variant-grid">
+                <figure class="variant-card">
+                  <figcaption><span>Light</span><a href="../assets/generated/timeline-light.svg" target="_blank" rel="noreferrer">Open full size</a></figcaption>
+                  <img src="../assets/generated/timeline-light.svg" alt="Timeline widget light">
+                </figure>
+                <figure class="variant-card">
+                  <figcaption><span>Dark</span><a href="../assets/generated/timeline-dark.svg" target="_blank" rel="noreferrer">Open full size</a></figcaption>
+                  <img src="../assets/generated/timeline-dark.svg" alt="Timeline widget dark">
+                </figure>
+                <figure class="variant-card">
+                  <figcaption><span>Mobile</span><a href="../assets/generated/timeline-mobile-light.svg" target="_blank" rel="noreferrer">Open full size</a></figcaption>
+                  <img src="../assets/generated/timeline-mobile-light.svg" alt="Timeline widget mobile">
+                </figure>
+              </div>
+            </article>
+            <article class="variant-card">
+              <h3>Contact</h3>
+              <div class="variant-grid">
+                <figure class="variant-card">
+                  <figcaption><span>Light</span><a href="../assets/generated/contact-light.svg" target="_blank" rel="noreferrer">Open full size</a></figcaption>
+                  <img src="../assets/generated/contact-light.svg" alt="Contact widget light">
+                </figure>
+                <figure class="variant-card">
+                  <figcaption><span>Dark</span><a href="../assets/generated/contact-dark.svg" target="_blank" rel="noreferrer">Open full size</a></figcaption>
+                  <img src="../assets/generated/contact-dark.svg" alt="Contact widget dark">
+                </figure>
+                <figure class="variant-card">
+                  <figcaption><span>Mobile</span><a href="../assets/generated/contact-mobile-light.svg" target="_blank" rel="noreferrer">Open full size</a></figcaption>
+                  <img src="../assets/generated/contact-mobile-light.svg" alt="Contact widget mobile">
+                </figure>
+              </div>
+            </article>
+          </div>
+        </article>
+      </section>
+
+      <section class="card card--wide">
+        <p class="label">Complete README preview</p>
+        <h2>Complete README preview</h2>
+        <p class="section-copy">Approximate rendering of the generated README at representative GitHub desktop and mobile widths.</p>
+        <div class="readme-preview-grid">
+          <div class="preview-shell">
+            <h3>Desktop README</h3>
+            <p class="section-copy">Approximate GitHub content width: 900 pixels.</p>
+            <div class="preview-actions">
+              <span>Hero, featured work, timeline, and footer in one scrolling frame.</span>
+            </div>
+            <div class="desktop-preview-width frame">
+              <iframe data-readme-frame="desktop" src="./generated/readme-system.html" title="Desktop README preview"></iframe>
+            </div>
+          </div>
+          <div class="preview-shell">
+            <h3>Mobile README</h3>
+            <p class="section-copy">Approximate mobile viewport: 390 pixels wide.</p>
+            <div class="preview-actions">
+              <span>Uses the mobile SVG variants selected by the README picture elements.</span>
+            </div>
+            <div class="phone-shell">
+              <iframe data-readme-frame="mobile" src="./generated/readme-system.html" title="Mobile README preview"></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script>
+      const root = document.documentElement;
+      const buttons = [...document.querySelectorAll("[data-theme-choice]")];
+      const readmeFrames = [...document.querySelectorAll("[data-readme-frame]")];
+      const inlinePreviewMedia = [...document.querySelectorAll("img, picture source")];
+      const readmeDocuments = {
+        light: "./generated/readme-light.html",
+        dark: "./generated/readme-dark.html",
+        system: "./generated/readme-system.html"
+      };
+
+      function withCacheBust(url, token) {
+        if (!url) {
+          return url;
+        }
+        const joiner = url.includes("?") ? "&" : "?";
+        return `${url}${joiner}preview=${token}`;
+      }
+
+      function refreshInlineMedia() {
+        const token = String(Date.now());
+        for (const node of inlinePreviewMedia) {
+          if (node.tagName === "IMG") {
+            const original = node.dataset.originalSrc || node.getAttribute("src");
+            node.dataset.originalSrc = original;
+            node.setAttribute("src", withCacheBust(original, token));
+            continue;
+          }
+          const original = node.dataset.originalSrcset || node.getAttribute("srcset");
+          node.dataset.originalSrcset = original;
+          node.setAttribute("srcset", withCacheBust(original, token));
+        }
+      }
+
+      function updateTheme(choice) {
+        if (choice === "system") {
+          root.removeAttribute("data-theme");
+        } else {
+          root.setAttribute("data-theme", choice);
+        }
+
+        for (const button of buttons) {
+          button.dataset.active = String(button.getAttribute("data-theme-choice") === choice);
+        }
+
+        const token = String(Date.now());
+        for (const frame of readmeFrames) {
+          frame.setAttribute("src", withCacheBust(readmeDocuments[choice], token));
+        }
+
+        refreshInlineMedia();
+      }
+
+      function resizeFrame(frame) {
+        try {
+          const doc = frame.contentDocument;
+          if (!doc || !doc.documentElement || !doc.body) {
+            return;
+          }
+          const height = Math.max(
+            doc.documentElement.scrollHeight,
+            doc.body.scrollHeight,
+            doc.documentElement.offsetHeight,
+            doc.body.offsetHeight
+          );
+          frame.style.height = `${height}px`;
+        } catch (error) {
+          console.debug("Unable to resize preview frame", error);
+        }
+      }
+
+      for (const button of buttons) {
+        button.addEventListener("click", () => {
+          updateTheme(button.getAttribute("data-theme-choice"));
+        });
+      }
+
+      for (const frame of readmeFrames) {
+        frame.addEventListener("load", () => resizeFrame(frame));
+      }
+
+      updateTheme("system");
+    </script>
+  </body>
+</html>

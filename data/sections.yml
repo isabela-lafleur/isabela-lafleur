@@ -1,0 +1,9 @@
+sections:
+  hero: true
+  intro: true
+  identity: true
+  featured_work: true
+  signal_path: true
+  skills: true
+  timeline: true
+  contact: true

@@ -1,0 +1,161 @@
+meta:
+  mobile_breakpoint: 600
+  preview_desktop_width: 900
+  preview_mobile_width: 390
+
+typography:
+  sans_family:
+    - ui-sans-serif
+    - system-ui
+    - -apple-system
+    - BlinkMacSystemFont
+    - Segoe UI
+    - sans-serif
+  display_family:
+    - Atlas Display
+    - Iowan Old Style
+    - Baskerville
+    - Palatino Linotype
+    - Palatino
+    - Georgia
+    - Times New Roman
+    - serif
+  body_family:
+    - Atlas Body
+    - Iowan Old Style
+    - Palatino Linotype
+    - Palatino
+    - Georgia
+    - serif
+  body_semibold_family:
+    - Atlas Body Semibold
+    - Atlas Body
+    - Iowan Old Style
+    - Palatino Linotype
+    - Palatino
+    - Georgia
+    - serif
+  mono_family:
+    - Atlas Mono
+    - SFMono-Regular
+    - Consolas
+    - Liberation Mono
+    - Menlo
+    - monospace
+  hero:
+    desktop:
+      name_size: 64
+      discipline_size: 20
+      statement_size: 16
+      metadata_size: 11
+      feature_label_size: 11
+      feature_title_size: 24
+      feature_title_leading: 30
+      feature_meta_size: 10
+      feature_note_size: 10
+      statement_leading: 23
+      discipline_leading: 28
+    mobile:
+      name_size: 34
+      discipline_size: 12
+      statement_size: 12
+      metadata_size: 9
+      feature_label_size: 10
+      feature_title_size: 20
+      feature_title_leading: 25
+      feature_meta_size: 9
+      feature_note_size: 9
+      statement_leading: 18
+      discipline_leading: 20
+  widget:
+    desktop:
+      section_size: 11
+      heading_size: 25
+      card_title_size: 17
+      body_size: 14
+      meta_size: 11
+      tag_size: 10
+    mobile:
+      section_size: 10
+      heading_size: 21
+      card_title_size: 16
+      body_size: 14
+      meta_size: 10
+      tag_size: 10
+
+layout:
+  hero:
+    desktop:
+      width: 1000
+      panel:
+        x: 26
+        y: 22
+        width: 948
+        radius: 18
+      padding:
+        top: 28
+        right: 30
+        bottom: 24
+        left: 32
+      text_x: 58
+      text_width: 488
+      name_line_gap: 66
+      metadata_gap: 166
+      media_x: 584
+      media_width: 330
+      media_top: 54
+      media_padding: 16
+      media_header_gap: 8
+      media_link_gap: 10
+      media_image_top_gap: 16
+      media_image_height: 188
+      media_note_gap: 10
+    mobile:
+      width: 390
+      panel:
+        x: 16
+        y: 16
+        width: 358
+        radius: 18
+      padding:
+        top: 24
+        right: 20
+        bottom: 22
+        left: 20
+      text_x: 30
+      text_width: 330
+      name_line_gap: 52
+      metadata_gap: 0
+      media_x: 30
+      media_width: 330
+      media_top_gap: 34
+      media_padding: 14
+      media_header_gap: 7
+      media_link_gap: 8
+      media_image_top_gap: 14
+      media_image_height: 210
+      media_note_gap: 8
+
+light:
+  background: "#F6F7FB"
+  panel: "#EEF0F7"
+  text: "#1B1F26"
+  heading: "#1B1F26"
+  indigo: "#2D3A8C"
+  periwinkle: "#4F6BFF"
+  lavender: "#A78BFF"
+  muted: "#8A8F9A"
+  border: "#DDE1EB"
+  trace_fill: "#DCE2FF"
+
+dark:
+  background: "#0D1016"
+  panel: "#151A22"
+  text: "#E9ECF4"
+  heading: "#F4F5FA"
+  indigo: "#91A4FF"
+  periwinkle: "#91A4FF"
+  lavender: "#B59AFF"
+  muted: "#A1A8B7"
+  border: "#262D3A"
+  trace_fill: "#1A2346"

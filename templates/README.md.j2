@@ -1,0 +1,63 @@
+<!-- Generated file. Edit data/profile.yml or design/tokens.yml and rebuild with python3 scripts/build_profile.py -->
+{% macro themed_picture(base_name, alt) -%}
+<picture>
+  <source media="(max-width: {{ mobile_breakpoint }}px) and (prefers-color-scheme: dark)" srcset="./assets/generated/{{ base_name }}-mobile-dark.svg">
+  <source media="(max-width: {{ mobile_breakpoint }}px) and (prefers-color-scheme: light)" srcset="./assets/generated/{{ base_name }}-mobile-light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/generated/{{ base_name }}-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/generated/{{ base_name }}-light.svg">
+  <img src="./assets/generated/{{ base_name }}-light.svg" width="100%" alt="{{ alt }}">
+</picture>
+{%- endmacro %}
+{% if "hero" in enabled_sections %}
+{{ themed_picture("hero", hero_alt) }}
+{% endif %}
+
+{% if "intro" in enabled_sections %}
+> **{{ profile.profile.location }}**<br>
+{% for paragraph in profile.intro %}
+> {{ paragraph }}
+{% if not loop.last %}
+>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{% if "identity" in enabled_sections %}
+{{ themed_picture("identity", "Research identity widget for Isabela LaFleur") }}
+{% endif %}
+
+{% if "featured_work" in enabled_sections %}
+{{ themed_picture("featured-work", "Featured work widget for Isabela LaFleur") }}
+
+<p align="center">
+{% for project in featured_projects %}
+  <a href="{{ project.display_url }}">{{ project.title }}</a>{% if not loop.last %} ·{% endif %}
+{% endfor %}
+</p>
+{% endif %}
+
+{% if "signal_path" in enabled_sections %}
+{{ themed_picture("signal-path", "Signal path widget showing Isabela LaFleur's workflow from observation to protection") }}
+{% endif %}
+
+{% if "skills" in enabled_sections %}
+{{ themed_picture("skills", "Skills widget summarizing languages, scientific tools, systems, and research methods") }}
+{% endif %}
+
+{% if "timeline" in enabled_sections %}
+{{ themed_picture("timeline", "Timeline widget for Isabela LaFleur") }}
+{% endif %}
+
+{% if "contact" in enabled_sections %}
+{{ themed_picture("contact", "Contact widget for Isabela LaFleur") }}
+
+<p align="center">
+{% for link in contact_links %}
+  <a href="{{ link.url }}">{{ link.label }}</a>{% if not loop.last %} ·{% endif %}
+{% endfor %}
+</p>
+{% endif %}
+
+{% if placeholders %}
+<sub>Open placeholders: {{ placeholders|join(" · ") }}. Update them in `data/profile.yml`.</sub>
+{% endif %}

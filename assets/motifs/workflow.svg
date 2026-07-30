@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" role="img" aria-labelledby="title desc">
+  <title id="title">Workflow motif</title>
+  <desc id="desc">A compact process line connecting three stages.</desc>
+  <g fill="none" stroke="#4F6BFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="10" y="14" width="28" height="20" rx="6"/>
+    <rect x="66" y="14" width="28" height="20" rx="6"/>
+    <rect x="122" y="14" width="28" height="20" rx="6"/>
+    <path d="M38 24 H66"/>
+    <path d="M94 24 H122"/>
+  </g>
+  <g fill="#A78BFF">
+    <circle cx="52" cy="24" r="3.5"/>
+    <circle cx="108" cy="24" r="3.5"/>
+  </g>
+</svg>

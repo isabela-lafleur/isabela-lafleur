@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" role="img" aria-labelledby="title desc">
+  <title id="title">Crystal structure motif</title>
+  <desc id="desc">A geometric lattice with connected nodes.</desc>
+  <g fill="none" stroke="#4F6BFF" stroke-width="2">
+    <path d="M24 14 H80 L108 30 H52 Z"/>
+    <path d="M80 14 L108 30"/>
+    <path d="M24 14 L52 30"/>
+    <path d="M52 30 H108"/>
+    <path d="M80 14 V30"/>
+  </g>
+  <g fill="#A78BFF">
+    <circle cx="24" cy="14" r="3.5"/>
+    <circle cx="80" cy="14" r="3.5"/>
+    <circle cx="108" cy="30" r="3.5"/>
+    <circle cx="52" cy="30" r="3.5"/>
+    <circle cx="80" cy="30" r="3.5"/>
+  </g>
+</svg>

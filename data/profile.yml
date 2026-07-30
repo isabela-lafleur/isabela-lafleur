@@ -1,0 +1,165 @@
+profile:
+  name: Isabela LaFleur
+  github_username: isabela-lafleur
+  location: Baltimore, MD / New York, NY
+  email: "isabelamlafleur@gmail.com"
+  linkedin: ""
+  resume_url: ""
+
+hero:
+  institution_label: Johns Hopkins University
+  discipline_lines:
+    - Chemical & Biomolecular Engineering
+    - Scientific Computing • Biosecurity
+  statement: >
+    I build stuff. Usually computational systems.
+    Sometimes useful.
+  molecule_of_the_month:
+    mode: auto
+    article_id:
+    image_name: ""
+  metadata:
+    - B.S. expected 2027
+    - Baltimore / New York
+    - scientific systems
+
+intro:
+  - >
+    I work at the intersection of engineering, computation, and safer
+    scientific systems, with a bias toward tools that make dense evidence
+    clearer, more reproducible, and more actionable.
+
+focus_areas:
+  - title: Engineering
+    icon: flask
+    description: >
+      Molecular systems, experiments, and data-driven design shaped by a
+      chemical and biomolecular engineering lens.
+  - title: Computation
+    icon: code
+    description: >
+      Scientific software, modeling, automation, and reproducible workflows
+      built for real research settings.
+  - title: Biosecurity Research
+    icon: shield
+    description: >
+      Evidence systems supporting safer science, risk-aware analysis, and
+      preparedness work.
+  - title: Building Tools
+    icon: workflow
+    description: >
+      Tools that connect research questions, operational constraints, and
+      decision-ready outputs.
+
+featured_projects:
+  - title: Automated XRD Analysis
+    repository: isabela-lafleur/loop
+    url: ""
+    description: >
+      Automated data validation, phase candidate screening, and
+      GSAS-II-backed refinement for high-throughput diffraction work.
+      Private repository.
+    topics:
+      - Python
+      - SciPy
+      - GSAS-II
+    motif: diffraction
+    featured: true
+
+  - title: Biosecurity Evidence Pipeline
+    repository: isabela-lafleur/toxin_pilot_pipeline
+    url: ""
+    description: >
+      Structured collection of sequence relationships, provenance, and
+      risk-relevant evidence for safer science analysis.
+      Private repository.
+    topics:
+      - Bioinformatics
+      - Data pipelines
+      - Research
+    motif: network
+    featured: true
+
+  - title: Clinical Workflow Automation
+    repository: isabela-lafleur/clinical-automation
+    url: ""
+    description: >
+      Secure tools that reduce repetitive clinical workflow tasks while
+      preserving traceability and reliability.
+      Private repository.
+    topics:
+      - Python
+      - APIs
+      - Automation
+    motif: workflow
+    featured: true
+
+signal_path:
+  - title: Observe
+    icon: sample
+    description: Start with experimental evidence, context, or operational friction.
+  - title: Measure
+    icon: measure
+    description: Structure the problem into dependable data and explicit assumptions.
+  - title: Compute
+    icon: compute
+    description: Model, automate, and surface the signal that actually matters.
+  - title: Understand
+    icon: understand
+    description: Translate patterns into scientific or operational insight.
+  - title: Protect
+    icon: protect
+    description: Apply the result toward safer, more usable systems.
+
+skills:
+  Languages:
+    - Python
+    - SQL
+    - JavaScript
+    - MATLAB
+  Scientific:
+    - NumPy
+    - pandas
+    - SciPy
+    - PyTorch
+    - GSAS-II
+  Systems:
+    - Docker
+    - AWS
+    - GitHub Actions
+    - REST APIs
+  Research:
+    - Data curation
+    - Provenance
+    - Model evaluation
+    - Scientific validation
+
+timeline:
+  - year: "2023"
+    title: Clinical Technology
+    organization: Apple Ophthalmology
+    description: Clinical imaging, workflow design, and administrative automation.
+  - year: "2025"
+    title: Scientific Computing
+    organization: Johns Hopkins / LOOP
+    description: Automated XRD analysis and scientific software infrastructure.
+  - year: "2026"
+    title: Biosecurity Systems
+    organization: Applied biosecurity work
+    description: Evidence collection, sequence analysis, and screening research.
+  - year: "2027"
+    title: B.S. Chemical & Biomolecular Engineering
+    organization: Johns Hopkins University
+    description: Expected graduation.
+
+contact:
+  closing_note: >
+    I value projects that are scientifically rigorous and technically challenging.
+    Links below to stay in contact or see my work.
+  links:
+    - label: GitHub
+      url: https://github.com/isabela-lafleur
+    - label: LinkedIn
+      url: "https://www.linkedin.com/in/isabela-lafleur"
+    - label: Resume
+      url: ""

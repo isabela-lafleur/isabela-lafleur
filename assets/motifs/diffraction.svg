@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" role="img" aria-labelledby="title desc">
+  <title id="title">Diffraction motif</title>
+  <desc id="desc">A compact scientific trace with several peaks.</desc>
+  <path d="M6 36 L24 34 L38 30 L46 10 L54 31 L69 28 L81 14 L92 32 L108 27 L121 18 L136 33 L154 29" fill="none" stroke="#4F6BFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+  <path d="M6 36 L24 34 L38 30 L46 10 L54 31 L69 28 L81 14 L92 32 L108 27 L121 18 L136 33 L154 29 L154 42 L6 42 Z" fill="#DCE2FF" opacity="0.8"/>
+</svg>

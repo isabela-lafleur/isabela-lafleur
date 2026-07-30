@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="{{ viewbox }}" role="img" aria-label="Signal path widget">
+  <!-- Generated file. Edit data/profile.yml or design/tokens.yml and rebuild. -->
+  <defs>
+    <style>
+      {{ style_block }}
+    </style>
+    <marker id="signal-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="{{ colors.periwinkle }}"/>
+    </marker>
+  </defs>
+  <rect width="{{ width }}" height="{{ height }}" rx="24" fill="{{ colors.background }}"/>
+  <rect x="{{ panel.x }}" y="{{ panel.y }}" width="{{ panel.width }}" height="{{ panel.height }}" rx="{{ panel.radius }}" fill="{{ colors.panel }}" stroke="{{ colors.border }}"/>
+  <text x="{{ heading.x }}" y="{{ section_y }}" class="widget-section">{{ section_label }}</text>
+  <text x="{{ heading.x }}" y="{{ heading.y }}" class="widget-heading">
+    {% for line in heading.lines %}
+    <tspan x="{{ heading.x }}" dy="{{ 0 if loop.first else heading.leading }}">{{ line }}</tspan>
+    {% endfor %}
+  </text>
+
+  {% for connector in connectors %}
+  <line x1="{{ connector.x1 }}" y1="{{ connector.y1 }}" x2="{{ connector.x2 }}" y2="{{ connector.y2 }}" stroke="{{ colors.periwinkle }}" stroke-width="2.5" marker-end="url(#signal-arrow)" vector-effect="non-scaling-stroke"/>
+  {% endfor %}
+
+  {% for box in boxes %}
+  <rect x="{{ box.x }}" y="{{ box.y }}" width="{{ box.width }}" height="{{ box.height }}" rx="14" fill="{{ colors.background }}" stroke="{{ colors.border }}" data-container-id="signal-box-{{ loop.index0 }}"/>
+  <text x="{{ box.title.x }}" y="{{ box.title.y }}" class="widget-title">
+    {% for line in box.title.lines %}
+    <tspan x="{{ box.title.x }}" dy="{{ 0 if loop.first else box.title.leading }}">{{ line }}</tspan>
+    {% endfor %}
+  </text>
+  <text x="{{ box.body.x }}" y="{{ box.body.y }}" class="widget-body">
+    {% for line in box.body.lines %}
+    <tspan x="{{ box.body.x }}" dy="{{ 0 if loop.first else box.body.leading }}">{{ line }}</tspan>
+    {% endfor %}
+  </text>
+  {% endfor %}
+</svg>

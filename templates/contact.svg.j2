@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="{{ viewbox }}" role="img" aria-label="Contact widget">
+  <!-- Generated file. Edit data/profile.yml or design/tokens.yml and rebuild. -->
+  <defs>
+    <style>
+      {{ style_block }}
+    </style>
+  </defs>
+  <rect width="{{ width }}" height="{{ height }}" rx="24" fill="{{ colors.background }}"/>
+  <rect x="{{ panel.x }}" y="{{ panel.y }}" width="{{ panel.width }}" height="{{ panel.height }}" rx="{{ panel.radius }}" fill="{{ colors.panel }}" stroke="{{ colors.border }}"/>
+  <text x="{{ heading.x }}" y="{{ section_y }}" class="widget-section">{{ section_label }}</text>
+  <text x="{{ heading.x }}" y="{{ heading.y }}" class="widget-heading">
+    {% for line in heading.lines %}
+    <tspan x="{{ heading.x }}" dy="{{ 0 if loop.first else heading.leading }}">{{ line }}</tspan>
+    {% endfor %}
+  </text>
+  <text x="{{ note.x }}" y="{{ note.y }}" class="widget-body">
+    {% for line in note.lines %}
+    <tspan x="{{ note.x }}" dy="{{ 0 if loop.first else note.leading }}">{{ line }}</tspan>
+    {% endfor %}
+  </text>
+
+  {% for card in cards %}
+  <rect x="{{ card.x }}" y="{{ card.y }}" width="{{ card.width }}" height="{{ card.height }}" rx="12" fill="{{ colors.background }}" stroke="{{ colors.border }}" data-container-id="contact-card-{{ loop.index0 }}"/>
+  <text x="{{ card.label.x }}" y="{{ card.label.y }}" class="widget-meta">
+    {% for line in card.label.lines %}
+    <tspan x="{{ card.label.x }}" dy="{{ 0 if loop.first else card.label.leading }}">{{ line }}</tspan>
+    {% endfor %}
+  </text>
+  <text x="{{ card.value.x }}" y="{{ card.value.y }}" class="widget-body">
+    {% for line in card.value.lines %}
+    <tspan x="{{ card.value.x }}" dy="{{ 0 if loop.first else card.value.leading }}">{{ line }}</tspan>
+    {% endfor %}
+  </text>
+  {% endfor %}
+</svg>

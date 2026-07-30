@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="{{ viewbox }}" role="img" aria-label="Timeline widget">
+  <!-- Generated file. Edit data/profile.yml or design/tokens.yml and rebuild. -->
+  <defs>
+    <style>
+      {{ style_block }}
+    </style>
+  </defs>
+  <rect width="{{ width }}" height="{{ height }}" rx="24" fill="{{ colors.background }}"/>
+  <rect x="{{ panel.x }}" y="{{ panel.y }}" width="{{ panel.width }}" height="{{ panel.height }}" rx="{{ panel.radius }}" fill="{{ colors.panel }}" stroke="{{ colors.border }}"/>
+  <text x="{{ heading.x }}" y="{{ section_y }}" class="widget-section">{{ section_label }}</text>
+  <text x="{{ heading.x }}" y="{{ heading.y }}" class="widget-heading">
+    {% for line in heading.lines %}
+    <tspan x="{{ heading.x }}" dy="{{ 0 if loop.first else heading.leading }}">{{ line }}</tspan>
+    {% endfor %}
+  </text>
+
+  {% if entries %}
+  <line x1="{{ line_x }}" y1="{{ line_top }}" x2="{{ line_x }}" y2="{{ line_bottom }}" stroke="{{ colors.border }}" stroke-width="2" vector-effect="non-scaling-stroke"/>
+  {% endif %}
+
+  {% for entry in entries %}
+  <circle cx="{{ entry.dot_x }}" cy="{{ entry.dot_y }}" r="8" fill="{{ colors.periwinkle }}"/>
+  <text x="{{ entry.dot_x }}" y="{{ entry.year_y }}" class="widget-meta" text-anchor="middle">{{ entry.year }}</text>
+  <rect x="{{ entry.x }}" y="{{ entry.y }}" width="{{ entry.width }}" height="{{ entry.height }}" rx="14" fill="{{ colors.background }}" stroke="{{ colors.border }}" data-container-id="timeline-entry-{{ loop.index0 }}"/>
+  <text x="{{ entry.title.x }}" y="{{ entry.title.y }}" class="widget-title-display">
+    {% for line in entry.title.lines %}
+    <tspan x="{{ entry.title.x }}" dy="{{ 0 if loop.first else entry.title.leading }}">{{ line }}</tspan>
+    {% endfor %}
+  </text>
+  <text x="{{ entry.organization.x }}" y="{{ entry.organization.y }}" class="widget-meta">
+    {% for line in entry.organization.lines %}
+    <tspan x="{{ entry.organization.x }}" dy="{{ 0 if loop.first else entry.organization.leading }}">{{ line }}</tspan>
+    {% endfor %}
+  </text>
+  <text x="{{ entry.body.x }}" y="{{ entry.body.y }}" class="widget-body">
+    {% for line in entry.body.lines %}
+    <tspan x="{{ entry.body.x }}" dy="{{ 0 if loop.first else entry.body.leading }}">{{ line }}</tspan>
+    {% endfor %}
+  </text>
+  {% endfor %}
+</svg>
