@@ -41,11 +41,9 @@
     {% endfor %}
   </text>
 
-  <text x="{{ discipline_block.x }}" y="{{ discipline_block.y }}" class="hero-discipline">
-    {% for line in discipline_block.lines %}
-    <tspan x="{{ discipline_block.x }}" dy="{{ 0 if loop.first else discipline_block.leading }}">{{ line }}</tspan>
-    {% endfor %}
-  </text>
+  {% for line in discipline_blocks %}
+  <text x="{{ line.x }}" y="{{ line.y }}" class="hero-discipline">{{ line.text }}</text>
+  {% endfor %}
 
   <text x="{{ statement_block.x }}" y="{{ statement_block.y }}" class="hero-statement">
     {% for line in statement_block.lines %}

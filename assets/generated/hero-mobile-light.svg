@@ -32,7 +32,7 @@
 
 .hero-top-label { font-family: "Atlas Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; fill: #8A8F9A; }
 .hero-name { font-family: "Atlas Display", "Iowan Old Style", Baskerville, "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif; font-size: 34px; font-weight: 600; line-height: 1.08; fill: #1B1F26; }
-.hero-discipline { font-family: "Atlas Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase; fill: #2D3A8C; }
+.hero-discipline { font-family: "Atlas Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 12px; letter-spacing: 0.05em; fill: #2D3A8C; }
 .hero-statement { font-family: "Atlas Body", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; font-size: 12px; font-weight: 400; fill: #1B1F26; }
 .hero-meta { font-family: "Atlas Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; fill: #8A8F9A; }
 .hero-feature-label { font-family: "Atlas Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; fill: #A78BFF; }
@@ -72,10 +72,8 @@
     <tspan x="30.0" dy="0">Isabela LaFleur</tspan>
   </text>
 
-  <text x="30.0" y="150.25" class="hero-discipline">
-    <tspan x="30.0" dy="0">Chemical &amp; Biomolecular Engineering</tspan>
-    <tspan x="30.0" dy="20.0">Scientific Computing • Biosecurity</tspan>
-  </text>
+  <text x="30.0" y="150.25" class="hero-discipline">CHEMICAL &amp; BIOMOLECULAR ENGINEERING</text>
+  <text x="30.0" y="170.25" class="hero-discipline">SCIENTIFIC COMPUTING • BIOSECURITY</text>
 
   <text x="30.0" y="208.25" class="hero-statement">
     <tspan x="30.0" dy="0">STEM researcher and developer experienced in ML,</tspan>

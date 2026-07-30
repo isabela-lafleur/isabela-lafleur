@@ -10,6 +10,8 @@
 {%- endmacro %}
 {% if "hero" in enabled_sections %}
 {{ themed_picture("hero", hero_alt) }}
+
+<p align="center"><sub>{{ molecule_of_the_month.label }} · {{ molecule_of_the_month.month_year }} · <a href="{{ molecule_of_the_month.article_url }}">{{ molecule_of_the_month.title }}</a></sub></p>
 {% endif %}
 
 {% if "intro" in enabled_sections %}

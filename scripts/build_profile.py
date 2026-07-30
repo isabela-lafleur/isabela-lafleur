@@ -68,7 +68,7 @@ STALE_GENERATED_FILES = (
 )
 
 
-def render_readme(profile_data: dict, mobile_breakpoint: int, section_config: dict[str, bool]) -> str:
+def render_readme(profile_data: dict, molecule_data: dict, mobile_breakpoint: int, section_config: dict[str, bool]) -> str:
     env = Environment(loader=FileSystemLoader(str(TEMPLATE_DIR)), autoescape=False, trim_blocks=True, lstrip_blocks=True)
     template = env.get_template("README.md.j2")
 
@@ -83,6 +83,7 @@ def render_readme(profile_data: dict, mobile_breakpoint: int, section_config: di
         contact_links=contact_links,
         placeholders=placeholders,
         hero_alt=hero_alt,
+        molecule_of_the_month=molecule_data,
         mobile_breakpoint=mobile_breakpoint,
         enabled_sections=set(enabled_readme_sections(section_config)),
     )
@@ -322,7 +323,7 @@ def main() -> int:
         viewport="mobile",
         section_label=section_labels["contact"],
     )
-    readme = render_readme(profile_data, mobile_breakpoint, section_config)
+    readme = render_readme(profile_data, molecule_data, mobile_breakpoint, section_config)
     preview_documents = render_preview_documents(readme, tokens)
 
     write_text(GENERATED_ASSET_DIR / "hero-light.svg", hero_light)

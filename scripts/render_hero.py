@@ -117,7 +117,7 @@ def render_hero(
         + f"""
 .hero-top-label {{ font-family: {MONO_STACK}; font-size: {typography['metadata_size']}px; letter-spacing: 0.12em; text-transform: uppercase; fill: {colors['muted']}; }}
 .hero-name {{ font-family: {DISPLAY_STACK}; font-size: {typography['name_size']}px; font-weight: 600; line-height: 1.08; fill: {colors['heading']}; }}
-.hero-discipline {{ font-family: {MONO_STACK}; font-size: {typography['discipline_size']}px; letter-spacing: 0.05em; text-transform: uppercase; fill: {colors['indigo']}; }}
+.hero-discipline {{ font-family: {MONO_STACK}; font-size: {typography['discipline_size']}px; letter-spacing: 0.05em; fill: {colors['indigo']}; }}
 .hero-statement {{ font-family: {BODY_STACK}; font-size: {typography['statement_size']}px; font-weight: 400; fill: {colors['text']}; }}
 .hero-meta {{ font-family: {MONO_STACK}; font-size: {typography['metadata_size']}px; letter-spacing: 0.08em; text-transform: uppercase; fill: {colors['muted']}; }}
 .hero-feature-label {{ font-family: {MONO_STACK}; font-size: {typography['feature_label_size']}px; letter-spacing: 0.1em; text-transform: uppercase; fill: {colors['lavender']}; }}
@@ -135,7 +135,13 @@ def render_hero(
         float(layout["name_line_gap"]),
         min_font_size=float(typography["name_size"]) - 8,
     )
-    mono_style = TextStyle(MONO_FONT.source_path, float(typography["discipline_size"]), 500, float(typography["discipline_leading"]))
+    mono_style = TextStyle(
+        MONO_FONT.source_path,
+        float(typography["discipline_size"]),
+        500,
+        float(typography["discipline_leading"]),
+        letter_spacing=float(typography["discipline_size"]) * 0.05,
+    )
     meta_style = TextStyle(MONO_FONT.source_path, float(typography["metadata_size"]), 500, float(typography["metadata_size"]) * 1.25)
     statement_style = TextStyle(
         BODY_FONT.source_path,
@@ -174,7 +180,7 @@ def render_hero(
     if len(name_layout.lines) > 2:
         raise ValueError("hero:name exceeded the supported two-line layout")
 
-    discipline_lines = _discipline_lines(profile_data)
+    discipline_lines = [line.upper() for line in _discipline_lines(profile_data)]
     discipline_layouts = [fit_text(line, mono_style, text_width, allow_box_expansion=False) for line in discipline_lines]
     statement_layout = fit_text(
         profile_data["hero"]["statement"],
@@ -356,12 +362,14 @@ def render_hero(
         top_label=escape(profile_data["hero"].get("institution_label", "")),
         top_label_position={"x": layout["text_x"], "y": top_label_y},
         name_block=_line_block(name_layout, float(layout["text_x"]), name_y),
-        discipline_block={
-            "x": float(layout["text_x"]),
-            "y": discipline_y,
-            "lines": [escape(line) for line in discipline_lines],
-            "leading": mono_style.line_height,
-        },
+        discipline_blocks=[
+            {
+                "x": float(layout["text_x"]),
+                "y": discipline_y + index * mono_style.line_height,
+                "text": escape(line),
+            }
+            for index, line in enumerate(discipline_lines)
+        ],
         statement_block=_line_block(statement_layout, float(layout["text_x"]), statement_y),
         metadata_items=metadata_items,
         molecule={
