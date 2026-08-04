@@ -39,7 +39,7 @@
   </defs>
   <rect width="390.0" height="538.55" rx="24" fill="#F6F7FB"/>
   <rect x="16.0" y="16.0" width="358.0" height="502.54999999999995" rx="18.0" fill="#EEF0F7" stroke="#DDE1EB"/>
-  <text x="32.0" y="49.0" class="widget-section">04 / Tools and Methods</text>
+  <text x="32.0" y="49.0" class="widget-section">03 / Tools and Methods</text>
   <text x="32.0" y="84.0" class="widget-heading">
     <tspan x="32.0" dy="0">Technical Stack</tspan>
   </text>

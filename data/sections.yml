@@ -3,7 +3,7 @@ sections:
   intro: true
   identity: true
   featured_work: true
-  signal_path: true
+  signal_path: false
   skills: true
   timeline: true
   contact: true

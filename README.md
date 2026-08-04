@@ -32,13 +32,6 @@
 <p align="center">
   <a href="https://github.com/isabela-lafleur/loop">Automated XRD Analysis</a> ·  <a href="https://github.com/isabela-lafleur/toxin_pilot_pipeline">Biosecurity Evidence Pipeline</a> ·  <a href="https://github.com/isabela-lafleur/clinical-automation">Clinical Workflow Automation</a></p>
 
-<picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="./assets/generated/signal-path-mobile-dark.svg">
-  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="./assets/generated/signal-path-mobile-light.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/generated/signal-path-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/generated/signal-path-light.svg">
-  <img src="./assets/generated/signal-path-light.svg" width="100%" alt="Signal path widget showing Isabela LaFleur's workflow from observation to protection">
-</picture>
 
 <picture>
   <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="./assets/generated/skills-mobile-dark.svg">
