@@ -1,19 +1,27 @@
 from __future__ import annotations
 
+from scripts.sections import enabled_readme_sections, load_section_config
+
 
 def test_readme_is_widget_based_and_generated(built_profile) -> None:
     readme = (built_profile / "README.md").read_text(encoding="utf-8")
     assert readme.startswith("<!-- Generated file.")
-    for asset in (
-        "./assets/generated/hero-light.svg",
-        "./assets/generated/identity-light.svg",
-        "./assets/generated/featured-work-light.svg",
-        "./assets/generated/signal-path-light.svg",
-        "./assets/generated/skills-light.svg",
-        "./assets/generated/timeline-light.svg",
-        "./assets/generated/contact-light.svg",
-    ):
+
+    asset_map = {
+        "hero": "./assets/generated/hero-light.svg",
+        "identity": "./assets/generated/identity-light.svg",
+        "featured_work": "./assets/generated/featured-work-light.svg",
+        "signal_path": "./assets/generated/signal-path-light.svg",
+        "skills": "./assets/generated/skills-light.svg",
+        "timeline": "./assets/generated/timeline-light.svg",
+        "contact": "./assets/generated/contact-light.svg",
+    }
+    for section in enabled_readme_sections(load_section_config()):
+        asset = asset_map.get(section)
+        if asset is None:
+            continue
         assert asset in readme
+
     assert "## Research Identity" not in readme
     assert "## Featured Work" not in readme
     assert "## Field Chronicle" not in readme
